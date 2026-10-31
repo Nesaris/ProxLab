@@ -14,7 +14,7 @@ const [hotePve, portPve] = grappe.split(':');
 fs.mkdirSync(sortie, { recursive: true });
 const MDP = 'phrase de passe pour proxlab en local';
 const navigateur = await chromium.launch();
-const contexte = await navigateur.newContext({ viewport: { width: 1280, height: 860 }, permissions: ['clipboard-read', 'clipboard-write'] });
+const contexte = await navigateur.newContext({ viewport: { width: 1280, height: 860 }, colorScheme: process.env.PARCOURS_SOMBRE === '1' ? 'dark' : 'light', permissions: ['clipboard-read', 'clipboard-write'] });
 // Le Chromium du parcours ne décode pas le H.264 (codec propriétaire) : un
 // décodeur de remplacement reçoit les images de l'écran fluide et en peint une
 // mire, pour éprouver tout le reste (relais, configuration, entrées).
