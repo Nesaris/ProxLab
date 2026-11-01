@@ -3,7 +3,7 @@
 # volume nommé et réseau partagé du Hub.
 services:
   proxlab:
-    image: ghcr.io/codexx64/proxlab:{{config.IMAGE_TAG}}
+    image: ghcr.io/nesaris/proxlab:{{config.IMAGE_TAG}}
     container_name: {{service.host}}
     restart: unless-stopped
     networks: [hub]
