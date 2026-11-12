@@ -10,6 +10,7 @@ import {
   Api, porte, pageSecurite, pageComptes, h, icone, basculeTheme, appliquerTheme,
   toast, confirmer, dialogue, feuille, ajouterPictos, renforcer, confirmerIdentite, raisonCle,
 } from './socle/compte.js';
+import { installerDisposition } from './socle/disposition.js';
 import { courbe, anneau, jauge, calendrier, capacite, tuiles } from './socle/graphes.js';
 import { Terminal } from './terminal.js';
 import { Ecran, DISPOSITIONS, intapables, estMac } from './ecran.js';
@@ -213,6 +214,8 @@ const app = h('div', { class: 'app' },
       h('div', { class: 'topright' }, basculeTheme(), h('div', { class: 'who', title: moi.identifiant, text: moi.identifiant.slice(0, 2).toUpperCase() }))),
     stage));
 document.body.append(app);
+// Le menu à gauche, en haut, en bas ou à droite : réglé dans le Hub, ou par chacun (bouton de la barre du haut, appui long sur le menu).
+installerDisposition({ rail: app.querySelector('nav.rail') });
 
 const E = { etat: null, synthese: null, filtre: 'toutes', q: '', tf: 'hour' };
 let courante = { cle: null, maj: null, quitter: null };

@@ -461,6 +461,7 @@ Une valeur invalide arrête ProxLab au démarrage avec la liste des erreurs.
 | `PROXLAB_EVENTS_DAYS` | rétention des événements (jours, 1 à 365 ; 20 000 au plus) | `30` |
 | `SOCLE_JETON_ADMIN_HUB` | jeton d'administration des comptes par le Hub ; dans le Hub, généré (`HUB_ADMIN_TOKEN`) | — |
 | `SOCLE_THEME` | gamme de l'interface : `soma`, `console` ou `exploitation` ; dans le Hub, choisie dans la page Thème | `soma` |
+| `SOCLE_DISPOSITION` | position du menu : `gauche`, `haut`, `bas` ou `droite` ; dans le Hub, choisie dans la page Thème. Chacun peut en choisir une autre dans l'interface (bouton à côté de clair ou sombre, ou appui long sur le menu puis glisser vers un bord) | `gauche` |
 | `DATA_DIR` | dossier de `proxlab.db` | `/app/data` |
 | `PORT` / `HOTE` | écoute | `8140` / `0.0.0.0` |
 | `SOCLE_CLE` | clé maîtresse, 32 octets en base64 (en conteneur : `SOCLE_CLE_FILE`) | — |
