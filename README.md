@@ -5,503 +5,71 @@
   </picture>
 </p>
 
-<p align="center"><img src="medias/affiche.png" alt="Affiche de ProxLab" width="100%"></p>
+<p align="center"><img src="medias/affiche.png" alt="Banner — ProxLab" width="100%"></p>
 
 # ProxLab
 
-La grappe Proxmox VE sous les yeux : machines et conteneurs, consoles,
-instantanés, sauvegardes, disponibilité et alertes — auto-hébergé, sur le socle
-commun des services.
+**A modern web dashboard for your Proxmox VE cluster: VMs and containers, consoles, snapshots, backups, uptime and alerts.**
 
-Projet [CodexX64](https://github.com/CodexX64). Licence AGPL-3.0 ou ultérieure.
+<p align="center">
 
-## Aperçu
+[![Stars](https://img.shields.io/github/stars/Nesaris/ProxLab?style=flat&logo=github&label=stars)](https://github.com/Nesaris/ProxLab/stargazers)
+[![License](https://img.shields.io/badge/license-AGPL--3.0-blue)](LICENSE)
+![Node.js 24](https://img.shields.io/badge/Node.js-24-339933?logo=node.js&logoColor=white)
+![Zero npm dependencies](https://img.shields.io/badge/npm%20dependencies-0-brightgreen)
+![Docker](https://img.shields.io/badge/Docker-ready-2496ED?logo=docker&logoColor=white)
+![Self-hosted](https://img.shields.io/badge/self--hosted-yes-orange)
+![Proxmox VE](https://img.shields.io/badge/Proxmox-VE-E57000?logo=proxmox&logoColor=white)
 
-| <img src="medias/capture-1.png" alt="Vue d’ensemble de la grappe"> |
-|:--:|
-| Vue d’ensemble de la grappe |
+</p>
 
-| <img src="medias/capture-2.png" alt="Les machines et conteneurs"> |
-|:--:|
-| Les machines et conteneurs |
+<p align="center"><a href="README.fr.md">🇫🇷 Documentation complète en français</a> · <a href="https://nesaris.github.io">Nesaris Network</a></p>
 
-| <img src="medias/capture-3.png" alt="La fiche d’une machine"> |
-|:--:|
-| La fiche d’une machine |
+## Why ProxLab?
 
-| <img src="medias/capture-4.png" alt="Les instantanés d’une machine"> |
-|:--:|
-| Les instantanés d’une machine |
+The Proxmox web UI is powerful but dense. ProxLab gives you a clear, fast overview of your cluster and the everyday actions you actually use, with proper accounts and an audit trail.
 
-Quatre gammes d’interface au choix — SOMA, Console, Exploitation, Lavande — en clair ou en sombre, de 360 à 1920 px de large.
+## Features
 
-## Ce que fait ProxLab
+- **Cluster overview** — running guests, storage usage, backups of the last 24 h, cluster network traffic, node health, a 28-night backup calendar and a 7-day hourly uptime map.
+- **Machines** — every VM and container across nodes, with metrics, snapshots, backups, config, VM screen (keyboard & mouse), low-latency streamed screen (Sunshine) and text console.
+- **Actions** — start, shutdown, reboot, suspend, snapshot, backup; force stop, migrate, rollback and delete for admins, every action signed by its author.
+- **Nodes, network, storage & tasks** — interfaces with their MAC addresses, storage content, cluster tasks and logs.
+- **Monitoring & alerts** — a VM going down, a lost node or a crossed threshold becomes an event, sent to a signed (HMAC) ticket webhook.
+- **Accounts & security** — roles, passkeys, TOTP, security log.
 
-- **Vue d'ensemble** : invités en marche, ce qui reste à traiter, stockage
-  occupé, sauvegardes des dernières 24 heures ; trafic réseau de la grappe
-  (1 h, 24 h, 7 jours) ; état de chaque nœud ; répartition des invités ;
-  calendrier des sauvegardes sur vingt-huit nuits et carte de disponibilité
-  heure par heure sur sept jours ; occupation de chaque stockage.
-- **Machines** : machines virtuelles et conteneurs de tous les nœuds, filtrés
-  et cherchés ; une fiche par machine avec ses relevés (processeur, mémoire,
-  réseau, disque), ses instantanés, ses sauvegardes, sa configuration, l'écran
-  d'une machine virtuelle (clavier et souris), son écran fluide (vidéo encodée
-  par Sunshine dans la VM, décodée par le navigateur) et la console texte.
-- **Gestes** : démarrer, arrêter proprement, redémarrer, suspendre, prendre un
-  instantané, lancer une sauvegarde (membre) ; arrêt forcé, réinitialisation,
-  migration, configuration, retour à un instantané, suppressions (administrateur,
-  sous renfort récent). Chaque geste est un événement, signé de son auteur.
-- **Nœuds** : ressources, interfaces réseau et shell d'un nœud (administrateur,
-  sous renfort, journalisé).
-- **Réseau** : les interfaces de chaque nœud, ce qu'elles relient, leur adresse,
-  leur adresse MAC et leurs autres noms (`enp3s0` derrière `nic0`). L'API réseau
-  de Proxmox ne donne pas les adresses MAC : ProxLab les lit dans le rapport du
-  nœud, au plus une fois toutes les dix minutes, et n'en garde rien d'autre.
-- **Stockage** et **Tâches** : contenu de chaque stockage, tâches de la grappe
-  et leur journal ; arrêt d'une tâche (administrateur, sous renfort).
-- **Surveillance** : à chaque passe, l'état est comparé au précédent ; une
-  machine qui tombe, un nœud perdu, un seuil franchi (stockage, mémoire,
-  processeur), une création, une destruction, une restauration, un démarrage
-  échoué devient un événement. Un arrêt demandé depuis ProxLab ne sonne pas.
-- **Alertes** : chaque panne part, si un administrateur l'a réglé, vers un
-  récepteur HTTP de tickets, avec une clé d'en-tête et une signature HMAC ;
-  le Hub les relève aussi (déclencheur « Nouvelle alerte »), et SYNAPSE les
-  garde en mémoire s'il est installé.
+## Screenshots
 
-## Comptes et sécurité
+<table>
+<tr><td align="center" width="50%"><img src="medias/capture-1.png" alt="Cluster overview"><br><sub>Cluster overview</sub></td><td align="center" width="50%"><img src="medias/capture-2.png" alt="Machines and containers"><br><sub>Machines and containers</sub></td></tr>
+<tr><td align="center" width="50%"><img src="medias/capture-3.png" alt="Machine details"><br><sub>Machine details</sub></td><td align="center" width="50%"><img src="medias/capture-4.png" alt="Snapshots"><br><sub>Snapshots</sub></td></tr>
+</table>
 
-ProxLab repose sur le socle commun : comptes nominatifs, rôles (`admin`,
-`membre`, `lecture`), et au moins deux facteurs pour se connecter.
-
-- **Clé d'accès** (Touch ID, Face ID, Windows Hello, clé USB) — exigée pour un
-  administrateur quand ProxLab est servi en HTTPS.
-- **Application d'authentification** (TOTP), configurée par un QR code généré
-  localement dans le navigateur.
-- **Mot de passe** (Argon2id), selon la politique choisie.
-- **Dix codes de secours** à usage unique.
-
-Sessions côté serveur, cookies `HttpOnly` et `SameSite=Strict`, en-tête CSRF,
-politique de contenu stricte avec nonce (aucun script en ligne, aucune
-bibliothèque tierce), limitation des tentatives, journal de sécurité chaîné.
-Toute route exige une session (ou le jeton de service du Hub, comparé en temps
-constant), un rôle déclaré et vérifié ; `/api/health` ne rend que `{ ok: true }`.
-
-**Liaison à Proxmox.** Le trafic vers Proxmox n'est jamais envoyé sans
-vérification TLS : soit le certificat est reconnu par les autorités du système,
-soit son empreinte SHA-256 est épinglée. La lecture du certificat (« Lire le
-certificat », administrateur sous renfort) montre le sujet, l'émetteur,
-l'échéance et l'empreinte, à comparer avec celle que Proxmox affiche ; ensuite,
-la connexion n'est rendue au client HTTP qu'après la comparaison de l'empreinte,
-avant le premier octet applicatif. Chaque segment d'adresse (nœud, VMID,
-instantané, stockage, tâche) est validé contre le format de Proxmox avant de
-partir. La configuration d'une machine montrée à l'écran exclut ses secrets
-(mots de passe cloud-init, clés SSH).
-
-**Secrets.** Le secret du jeton d'API et le mot de passe de Proxmox, la clé et
-le secret de signature du récepteur d'alertes sont scellés au repos
-(AES-256-GCM, sous-clé par usage, liés à leur réglage) et ne ressortent jamais
-de l'API après enregistrement — l'interface affiche « inchangé ». Un secret ne
-suit jamais un changement de destination sans être ressaisi.
-
-**Console.** Une console s'ouvre sur une passe d'une minute, à usage unique,
-tirée sous la session (où le rôle et le renfort sont vérifiés) et présentée à
-la mise à niveau WebSocket, qui vérifie l'origine et revérifie la session.
-Seules la saisie et la taille passent du navigateur à Proxmox, bornées ; la
-session est revérifiée chaque minute et la console se ferme avec elle.
-
-**Écran.** L'écran d'une machine virtuelle passe par le VNC de QEMU (vncproxy
-de Proxmox), sous la même passe. ProxLab fait lui-même la poignée VNC avec le
-ticket de vncproxy, qui ne quitte jamais le serveur ; le navigateur reprend le
-protocole ensuite, et seuls les messages d'un client VNC ordinaire (format,
-encodages, demandes d'image, touches, souris, presse-papiers, taille d'écran
-demandée) passent, entiers et bornés. Le navigateur n'envoie ni touche ni souris avant la fin de la
-poignée, et une connexion que Proxmox coupe pendant la poignée est reprise une
-fois. Le clavier part au caractère : ce qui est tapé ici arrive tel quel dans
-la VM, quelle que soit la disposition de chacun (un Mac en AZERTY, une VM en
-QWERTY) — chaque caractère part sur la touche qui le donne dans la disposition
-de la VM ; les touches sans caractère (flèches, Entrée, fonctions) et les
-raccourcis partent par leur touche, la lettre d'un raccourci sur sa touche
-dans la VM (⌘A ou Ctrl+A sélectionne tout partout). « Touches physiques »
-(menu Actions) envoie au contraire chaque touche telle quelle, la disposition
-de la VM s'appliquant (jeux). Ctrl+Alt+Suppr et le plein écran
-ont leur bouton ; en plein écran, l'image remplit l'écran sans être déformée.
-Deux pleins écrans : celui du navigateur (l'écran entier), ou « dans la
-fenêtre », où l'écran de la VM couvre toute la page — le défaut sur Safari,
-qui floute une page en plein écran qui reçoit beaucoup de frappes ; Échap y
-part dans la VM. Et « Ouvrir dans une fenêtre à part » : une fenêtre qui ne
-montre que l'écran de la VM, à sa taille, avec Actions et Fermer en surimpression
-— macOS la met en plein écran dans son propre bureau (bouton vert), à côté
-d'autres applications (Split View) ; c'est le défaut sur Safari.
-
-**Taille de l'écran.** « Ajuster la VM à la fenêtre » (menu Actions, activé par
-défaut, retenu par le navigateur) demande à la VM la résolution de la place
-visible, puis celle de l'écran entier en plein écran, et la suit quand la
-fenêtre change (ExtendedDesktopSize de VNC). En « Qualité nette » (activée par
-défaut), la VM reçoit les pixels réels de l'écran qui la regarde (le double sur
-un écran Retina) et l'image n'est pas agrandie : nette comme un écran local ; si
-le texte devient trop petit, l'échelle se règle dans la VM (GNOME : Paramètres →
-Écrans → Échelle 200 %). Coupée, un pixel de la VM par point : moins de données
-à transmettre. Il faut l'affichage VirtIO-GPU, le
-seul dont QEMU transmet la taille à l'invité : Linux (GNOME, KDE) suit seul,
-Windows avec le pilote VirtIO-GPU de virtio-win. Une VM en « std » le refuse :
-ProxLab l'écrit à côté de la résolution (« taille fixe : affichage std ») tant
-que l'écran est ouvert, avec le bouton dans la barre de l'écran ; « Passer en VirtIO-GPU… » (administrateur, avec
-renfort) change l'affichage en gardant ses options, presse-papiers compris,
-pour le prochain démarrage complet.
-
-**Presse-papiers de l'écran.** Dans les deux sens, par le presse-papiers étendu
-de VNC (UTF-8, 64 Kio au plus) : ⌘C/Ctrl+C dans l'écran rapporte ici ce que la
-VM a copié, et le panneau « Presse-papiers » montre et envoie le texte à la
-main. Il faut à la VM `clipboard=vnc` sur son affichage (bouton « Brancher le
-presse-papiers », administrateur ; pris en compte au prochain redémarrage ; une
-VM ainsi réglée ne migre plus à chaud) et `spice-vdagent` dans l'invité, qui ne
-relaie rien sous une session GNOME Wayland. ⌘V/Ctrl+V dans l'écran, et
-« Taper dans la VM » du panneau, font taper le texte par ProxLab lui-même :
-il ouvre sa propre connexion à l'écran de la VM (partagée avec celui qui est
-ouvert) et tape chaque caractère sur sa touche dans la disposition de la VM
-(AZERTY ou QWERTY), jusqu'à 100 000 caractères. On peut fermer l'écran ou
-quitter la page : la frappe continue, et la barre de l'écran la montre en
-revenant, avec de quoi l'arrêter ; un collage parti par mégarde s'arrête aussi
-d'une touche : Suppr, ⌫ ou Échap dans l'écran (ou l'écran fluide) pendant la
-frappe l'arrêtent, sans que la touche parte dans la VM. Le rythme est fixe :
-40 caractères par seconde (25 ms), environ 25 s pour 1 000 caractères ; plus
-vite, un bureau chargé (compositeur Wayland, fond animé) perdait des touches
-et en laissait une enfoncée, répétée sans fin. Un texte qui contient des
-caractères absents du clavier de la VM (é sur un clavier QWERTY…) n'est tapé
-qu'après confirmation, en disant lesquels seraient sautés ; la commande de
-connexion de l'écran fluide est refusée (elle va dans le terminal de
-l'ordinateur, jamais dans une VM). Ça marche partout, même
-à l'écran de connexion ; le panneau permet de passer plutôt par le
-presse-papiers de la VM. Le texte n'est ni gardé ni journalisé : le journal
-dit qui a fait taper combien de caractères. Le
-texte est pris par le collage du navigateur, sans demande d'autorisation, et
-⌘+lettre sur Mac devient Ctrl+lettre dans la VM (même touche physique). Le
-bouton « Actions » de l'écran reprend tout cela à la souris : copier, couper,
-coller, tout sélectionner, taper un texte, annuler, rétablir, Ctrl+Alt+Suppr,
-Super, Alt+Tab, Échap, Impr. écran, clavier de la VM (AZERTY ou QWERTY : une
-VM installée en live est souvent en QWERTY), presse-papiers, plein écran ;
-le clavier de la VM est demandé à la VM elle-même par son agent QEMU
-(qemu-guest-agent, « Agent QEMU » coché — bouton « Activer l'agent QEMU »),
-avec un script fixe qui ne fait que lire la disposition de la session ouverte
-(GNOME, KDE Plasma, Hyprland, Sway, Xfce) ou du système ; un choix à la main
-pour une VM reste prioritaire. Il est dit en permanence en haut de l'écran
-(« AZERTY », « QWERTY ») et un clic passe à l'autre ; ni détecté ni choisi, il
-est supposé d'après la langue du navigateur, marqué « ? » et signalé ; celui de la
-console : copier la sélection, coller, tout sélectionner, Ctrl+C, Ctrl+D,
-Ctrl+L, Ctrl+Z, Tab, Échap.
-
-**Onglets.** L'écran et la console s'ouvrent au premier affichage de leur
-onglet et restent ouverts quand on passe de l'un à l'autre ; ils se ferment en
-quittant la fiche. La console d'une VM n'envoie rien à l'ouverture (une ligne
-laissée par une autre session partirait) : un Entrée fait réapparaître
-l'invite de connexion du port série.
-
-**Écran fluide.** Un second écran, pour une VM où tourne
-[Sunshine](https://github.com/LizardByte/Sunshine) : l'écran de la VM est
-encodé en H.264 par sa carte graphique (ou son processeur), ProxLab le reçoit
-comme un client Moonlight et le relaie au navigateur, qui le décode lui-même
-(WebCodecs : Safari 16.4, Chrome, Edge, Firefox récents). 1080p ou 1440p à
-60 images par seconde, sans la lenteur du VNC sur un bureau animé. ProxLab est
-le seul client : rien à installer sur le poste, et le flux passe par la même
-connexion HTTPS que le reste (Hub, relais inverse) ; pas de WebRTC, qui
-annoncerait les adresses des machines.
-Réglage, une fois par VM, par un administrateur sous renfort (onglet « Écran
-fluide »), d'un bouton : « Relier ». ProxLab ouvre lui-même le shell du nœud
-(termproxy, avec l'utilisateur de la liaison : root@pam et son mot de passe),
-y envoie un script (encodé, écho coupé) et en lit la sortie. Le script prend,
-parmi les adresses internes que l'agent QEMU de la VM annonce, la première
-qu'un pont du nœud joint sans passerelle (le lien isolé ; jamais l'adresse
-d'un réseau que le nœud n'atteint que par une passerelle). Il pose un relais
-des six ports de Sunshine sur le nœud (socat, unités systemd
-`proxlab-fluide-<vmid>-*`), qui n'admet que l'adresse d'où ProxLab parle à
-l'API (lue dans le journal de pveproxy). Dans la VM, par l'agent, il règle
-Sunshine : image toujours chiffrée, écoute sur le seul lien, interface web
-que le pare-feu n'ouvre pas, UPnP coupé ; ouvre ufw au nœud seul sur ce lien ;
-masque avahi (la VM ne s'annonce plus par mDNS) ; ajoute le certificat de
-ProxLab aux appareils de Sunshine et relance Sunshine avec la session.
-L'empreinte du certificat de Sunshine revient sur la sortie du shell, déjà
-authentifiée, avec un numéro à usage unique tiré pour cette fois ; ProxLab
-vérifie que Sunshine présente ce certificat et le reconnaît, puis l'épingle.
-Les lignes du script s'affichent pendant qu'il tourne. Ni PIN, ni mot de
-passe, rien à coller. Sunshine doit être installé dans la VM, une session
-ouverte.
-
-Sans bandes noires : le flux prend les proportions de l'écran du poste (la
-hauteur de la qualité choisie, 1440, 1080 ou 720, et la largeur qui suit), et
-juste avant son ouverture ProxLab demande à la VM un écran de cette taille, par
-VNC comme l'onglet « Écran » (SetDesktopSize ; l'invité le suit en
-VirtIO-GPU). L'image remplit alors l'écran en plein écran, pixel pour pixel.
-Un affichage qui ne change pas de taille le dit, et le flux s'ouvre quand même.
-Réglable par poste dans Actions : « Écran de la VM à la taille du flux ».
-Un seul curseur sur l'image, celui de la VM, dessiné dans la vidéo : le curseur
-du poste, toujours en avance sur elle, faisait voir le retard du flux. Il
-revient par Actions : « Curseur du poste sur l'image ».
-La barre de l'écran fluide mesure en continu : images reçues par seconde, temps
-de Sunshine par image (capture et encodage, lu dans l'en-tête de chaque image),
-aller-retour du navigateur à ProxLab, décodage. Une liaison trop lente pour le
-débit ne s'accumule pas en retard : au-delà de 150 ms d'images en attente,
-ProxLab saute jusqu'à la prochaine image clé, et la barre le compte.
-
-Sans root@pam dans la liaison, ou au choix : une commande d'une ligne à coller
-dans le terminal de l'ordinateur (jamais dans la VM), `curl … | ssh … bash`,
-avec le terminal du nœud proposé (`ssh root@` et l'adresse du nœud dans la
-grappe ; à changer une fois, ce navigateur s'en souvient). Elle va chercher le
-même script chez ProxLab, par l'adresse où la page est ouverte (domaine ou
-réseau local), à un lien qui ne sert qu'une fois et quinze minutes au plus,
-sans session (un jeton de 256 bits en tient lieu ; le script ne porte aucun
-secret). L'empreinte revient alors par les notes de la VM, lues par l'API de
-Proxmox (dont ProxLab vérifie le certificat), et ProxLab retire la ligne des
-notes. À la main, l'ancien chemin reste : l'adresse de Sunshine —
-réseau interne seulement, plages privées et bouclage —, puis l'appairage :
-ProxLab tire un PIN, à saisir dans l'interface de Sunshine (onglet PIN, demande
-« ProxLab ») ; la preuve de l'appairage GameStream (certificats signés, défis
-chiffrés par le PIN) est vérifiée de part et d'autre, puis le certificat de
-Sunshine est épinglé et revérifié avant chaque connexion. Le voir : membre, comme l'écran. Chiffrement : poser
-`lan_encryption_mode = 2` dans la configuration de Sunshine ; la poignée RTSP,
-le contrôle et les entrées sont toujours chiffrés (AES-128-GCM, clé tirée pour
-chaque session), la vidéo aussi dès que Sunshine le propose. Clavier au
-caractère, comme l'écran VNC (même réglage du clavier de la VM) ; souris en
-position absolue ; ⌘V/Ctrl+V tape le presse-papiers par ProxLab (la frappe de
-l'écran) ; Ctrl+Alt+Suppr et image complète dans le menu Actions. Qualité :
-Très haute (1440p, 60 i/s, 40 Mb/s), Haute (1080p, 60 i/s, 20 Mb/s), Équilibrée
-(1080p, 30 i/s) ou Légère (720p, 30 i/s). Les paquets perdus sont retrouvés par
-la parité Reed-Solomon de Sunshine ; une image perdue, ou un navigateur en
-retard, fait demander une image complète plutôt que de montrer un écran
-abîmé. Fermer l'écran laisse le bureau lancé dans Sunshine : la prochaine
-ouverture le reprend. Pas de son ni de copie depuis la VM (Sunshine n'en
-relaie pas). ProxLab joint Sunshine sur TCP 47984, 47989 et 48010 et UDP
-47998 à 48000 : la VM doit lui être joignable sur ces ports, par un réseau
-interne (une seconde carte sur un pont sans sortie, par exemple) ; Sunshine
-lui-même ne parle qu'à ProxLab. Quand la VM n'est joignable que du nœud
-(pont isolé), c'est le relais que pose la commande ; plusieurs VM d'un même
-nœud prennent chacune leur base de ports (47989, 48089, …). Si Sunshine ne
-répond pas, ProxLab dit pourquoi : rien n'écoute sur le port, paquets ignorés
-(pare-feu), ou pas de route.
-
-**Console d'une VM.** Elle passe par le port série de la VM : sans `serial0`,
-ProxLab le dit avant d'appeler Proxmox et propose de l'ajouter
-(`serial0: socket`, administrateur, au prochain redémarrage), puis
-`sudo systemctl enable --now serial-getty@ttyS0.service` dans l'invité. Si le
-port série reste muet quatre secondes après une touche, la console le dit et
-donne cette commande ; quand l'agent QEMU tourne, un administrateur la fait
-lancer par l'agent (« Activer par l'agent QEMU », renfort, journalisé : la
-commande est fixe, rien de ce que demande le navigateur n'y entre). Copier :
-sélectionner puis ⌘C, Ctrl+Maj+C ou le bouton ; coller : ⌘V, Ctrl+Maj+V ou le
-bouton (collage encadré quand le shell le demande).
-
-**Droits à donner dans Proxmox.** Un utilisateur dédié (par exemple
-`proxlab@pve`) et un jeton d'API à séparation de privilèges, avec les rôles
-`PVEAuditor` (lecture, adresses MAC comprises : `Sys.Audit`) et `PVEVMUser` (alimentation, console) sur `/`, plus
-`PVEDatastoreUser` sur les stockages de sauvegarde ; ajouter `PVEVMAdmin` pour
-la migration, la configuration et les instantanés. Le mot de passe de cet
-utilisateur ne sert qu'à la console. Le shell d'un nœud exige `Sys.Console`.
-Lire le clavier d'une VM par son agent QEMU exige `VM.GuestAgent.Unrestricted`
-(Proxmox VE 9) ou `VM.Monitor` (Proxmox VE 8), compris dans `PVEVMAdmin` ;
-sans ce droit, ProxLab le dit et le choix reste à la main.
-
-Créer et supprimer une machine exigent `VM.Allocate` (compris dans
-`PVEVMAdmin`) ; créer demande aussi `Datastore.AllocateSpace` sur le stockage
-du disque (`PVEDatastoreUser`) et, depuis Proxmox VE 8, `SDN.Use` sur le pont
-(`PVESDNUser` sur `/sdn/zones/localnetwork`). Les images ISO exigent
-`Datastore.AllocateTemplate` sur leurs stockages (`PVEDatastoreAdmin` par
-exemple).
-
-**Images ISO.** La page « Images ISO » liste les images de chaque stockage qui
-en accepte, avec les VM qui en ont une dans leur lecteur CD. Un administrateur
-(renfort) en importe une depuis une adresse publique en https, en envoie une
-depuis son ordinateur, l'insère dans une VM, l'éjecte, ou la supprime (refusé
-tant qu'une VM la tient). Dans les deux cas l'image passe par ProxLab, qui la
-remet à Proxmox à mesure : taille annoncée (64 Gio au plus) et place libre
-vérifiées, signature d'une image de disque lue dans les premiers octets (ISO
-9660, UDF, disque amorçable), somme de contrôle comparée si elle est donnée —
-une image différente est retirée. Une adresse qui mène au réseau local (ou à une
-plage réservée) est refusée, redirections comprises : une image du réseau local
-s'envoie depuis l'ordinateur. Par le tunnel Cloudflare, un envoi de plus de
-100 Mo est refusé par Cloudflare : passer par l'adresse locale, ou importer
-depuis une adresse. L'importation demande que ProxLab sorte en https.
-
-**Créer une machine.** « Nouvelle VM » sur la page Machines, ou « Créer une
-VM » sur une image : nom, système, image d'installation, cœurs, mémoire,
-disque, stockage et pont, parmi ce que le nœud choisi propose ; ProxLab
-revérifie chaque choix, prend le numéro libre que donne Proxmox, attend la fin
-de la création puis démarre la machine si on le demande. Linux : VirtIO, agent
-QEMU, port série (la console) et VirtIO-GPU (l'écran s'ajuste à la fenêtre).
-Windows 11 : UEFI, TPM, disque SATA et carte e1000, que l'installeur reconnaît
-sans pilote. Administrateur, sous renfort, au journal.
-
-**Dupliquer une machine.** Fiche → menu ⋯ → Dupliquer, ou onglet Instantanés →
-Dupliquer sur une ligne : une copie complète (disques compris), arrêtée, sous un
-numéro libre, de l'état actuel ou de cet instantané, sur le même stockage ou un
-autre. Proxmox donne une adresse MAC neuve aux cartes réseau de la copie.
-Administrateur, sous renfort, au journal. Droit Proxmox : VM.Clone (compris dans
-PVEVMAdmin).
-
-**Étiquettes.** Une image, une interface réseau (page Réseau), un stockage ou un
-nœud reçoit un nom lisible (bouton étiquette, ou menu ⋯ → Étiquette pour une
-image) : « Ghost » au lieu de `vmbr1`. C'est ProxLab qui le garde ; dans Proxmox
-rien n'est renommé, le vrai nom reste écrit dessous et c'est lui qu'une VM
-reçoit. Les choix de « Nouvelle VM » montrent les étiquettes. Vide, le nom de
-Proxmox revient. Administrateur, sous renfort, au journal.
-
-**Supprimer une machine.** Fiche d'une machine arrêtée → « Supprimer », recopier
-son nom, « Supprimer avec ma clé ». La clé d'accès (à défaut le code TOTP) est
-demandée pour cette suppression seule : une confirmation sert une fois, deux
-minutes au plus. Disques et instantanés partent avec la machine ; ses
-sauvegardes restent. Une machine en marche ou protégée dans Proxmox est refusée.
-
-Les clés d'accès n'existent que sur une page HTTPS. Sans HTTPS, `SOCLE_HTTP=1`
-ouvre un mode dégradé, affiché comme tel partout : réservé à un réseau de
-confiance, le temps de servir ProxLab en HTTPS.
-
-**Tourner la clé maîtresse.** Dans le Hub (réglages avancés de ProxLab) ou dans
-`.env` : la clé actuelle dans `SOCLE_CLE_ANCIENNE`, une neuve
-(`openssl rand -base64 32`) dans `SOCLE_CLE`, puis redémarrer. ProxLab rescelle
-chaque secret TOTP et chaque secret de la liaison et des alertes, et l'écrit
-dans ses journaux. Vider ensuite `SOCLE_CLE_ANCIENNE` et redémarrer. Une clé
-que la base ne connaît pas arrête le démarrage au lieu de perdre les secrets.
-`node outils/exercice-rotation.mjs` rejoue toute la rotation sur une instance
-lancée comme en production.
-
-## Installation par le Hub
-
-Dans le Hub : Extensions → ProxLab → Installer. Le Hub génère la clé maîtresse,
-le jeton de service et le jeton d'administration des comptes, et les garde
-dans son coffre. Les comptes de ProxLab se gèrent ensuite aussi depuis
-« Comptes des services ».
-
-Au premier démarrage, ProxLab écrit son **jeton d'installation** dans ses
-journaux (bouton Journaux du service). Il ne sert qu'une fois : à créer le
-premier compte administrateur. Puis Réglages → Liaison à Proxmox.
-
-## Installation seule
-
-La clé maîtresse vit dans un secret Docker, hors du volume de données, lisible
-par l'utilisateur du conteneur (10001) seul. Garder une copie hors ligne de
-`secrets/socle_cle` : sans elle, une sauvegarde de la base ne rouvre ni les
-secrets TOTP ni ceux de la liaison.
+## Quick start
 
 ```bash
+git clone https://github.com/Nesaris/ProxLab && cd ProxLab
 cp .env.example .env
-# renseigner PROXLAB_HUB_TOKEN si un Hub doit lire ProxLab (openssl rand -hex 24)
 mkdir -p secrets && openssl rand -base64 32 > secrets/socle_cle && : > secrets/socle_cle_ancienne
 sudo chown 10001:10001 secrets/socle_cle secrets/socle_cle_ancienne && sudo chmod 400 secrets/socle_cle secrets/socle_cle_ancienne
 docker compose up -d --build
-docker compose logs proxlab | grep "Jeton d'installation"
+docker compose logs proxlab | grep "Jeton d'installation"   # one-time setup token
 ```
 
-Le port n'est publié que sur la boucle locale : placer un relais HTTPS devant
-(voir « Derrière un relais inverse »). Sans Docker : Node 24.7 ou plus récent,
-puis `npm start` (aucune dépendance à installer) ; sans `SOCLE_CLE` ni
-`SOCLE_CLE_FILE`, la clé est créée dans `DATA_DIR/cles`, ce qui ne convient
-qu'au développement.
+The port is only published on localhost: put an HTTPS reverse proxy in front. Or install it from the [Nesaris Hub](https://github.com/Nesaris/Hub) catalog.
 
-Vérifications : `npm test` (serveur, faux Proxmox en HTTPS avec certificats
-tirés à la volée, WebSocket de console, récepteur d'alertes), `npm run
-test:socle`, `node outils/exercice-rotation.mjs`, `node outils/exercice-incident.mjs`
-(runbook d'incident joué sur une instance lancée comme en production), et
-`node outils/vitrine.mjs` puis `node outils/parcours-navigateur.mjs <url>
-<jeton> <hôte:port>` (parcours dans Chromium, sept largeurs, avec Playwright).
+Full documentation (configuration, backups, key rotation, reverse proxy, upgrades) is in **[README.fr.md](README.fr.md)** (French).
 
-## Première configuration et mises à jour
+## Part of Nesaris Network
 
-Au premier démarrage, ouvre l’interface : tu crées le compte administrateur avec
-le jeton d’installation (affiché dans les journaux du conteneur, ou transmis par
-le Hub), tu inscris tes facteurs de connexion, puis l’**assistant de
-configuration** passe les réglages de ProxLab groupe par groupe. Il est
-obligatoire : ProxLab reste fermé tant qu’il n’est pas terminé. Chaque valeur
-proposée convient pour commencer.
+ProxLab is one of the self-hosted tools of **[Nesaris Network](https://nesaris.github.io)**. Every service shares the same hardened core (accounts, passkeys, TOTP, audit log, encrypted secrets), runs on Node.js 24 with **zero npm dependencies**, and can be installed in one click from the **[Nesaris Hub](https://github.com/Nesaris/Hub)**.
 
-<p align="center"><img src="medias/assistant.png" alt="Assistant de configuration" width="70%"></p>
+Other projects: [Hub](https://github.com/Nesaris/Hub) · [MapMyLAN](https://github.com/Nesaris/MapMyLAN) · [NexArc](https://github.com/Nesaris/NexArc) · [Vigie](https://github.com/Nesaris/Vigie) · [Relay](https://github.com/Nesaris/Relay) · [Nesmail](https://github.com/Nesaris/Nesmail) · [Synapse](https://github.com/Nesaris/Synapse) · [Dialekt](https://github.com/Nesaris/Dialekt)
 
-Réglages demandés : cadence de surveillance (secondes), conservation des événements (jours) ; plus ceux de
-tous les services (adresse publique, relais de confiance, gamme de
-l’interface, contact de sécurité, courriels d’alerte).
+## Contributing
 
-Après une mise à jour qui apporte un réglage nouveau, l’assistant revient au
-passage suivant d’un administrateur et ne demande **que ce réglage-là**. Une
-mise à jour sans réglage nouveau ne demande rien : une fenêtre « Quoi de neuf »
-résume ce qu’elle apporte, une fois par compte, et se ferme d’un clic
-(`nouveautes.json`).
+Issues and pull requests are welcome. If ProxLab is useful to you, a ⭐ helps a lot — it's how other people find the project.
 
-Tout reste modifiable dans **Comptes → Réglages du service**. Une variable
-posée dans l’environnement l’emporte toujours et n’est pas demandée. ProxLab
-redémarre seul pour appliquer un changement (le processus du conteneur le
-supervise). Les valeurs vivent dans `reglages.json`, dans le volume de
-données ; les secrets y sont scellés par la clé maîtresse.
+## License
 
-## Sauvegardes
-
-Une sauvegarde est un instantané cohérent de la base, chiffré pour une clé
-publique RSA (3072 bits au moins) dont la clé privée ne vit **pas** sur la
-machine de ProxLab.
-
-```bash
-# Une fois, sur le poste qui gardera la clé privée :
-openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:3072 -out proxlab-sauvegarde.pem
-openssl pkey -in proxlab-sauvegarde.pem -pubout -out proxlab-sauvegarde.pub
-# Chaque jour, sur l'hôte de ProxLab (la clé publique suffit) :
-docker exec -i <proxlab> node src/cli.js sauvegarde < proxlab-sauvegarde.pub > proxlab-$(date -u +%F).sauv
-# Restauration, sur le poste de la clé privée, dans un fichier neuf :
-node src/cli.js restaurer proxlab-sauvegarde.pem proxlab.db < proxlab-AAAA-MM-JJ.sauv
-```
-
-Copier chaque sauvegarde hors de l'hôte et la garder trente jours. Remettre la
-base dans le volume, ProxLab arrêté : `proxlab.db` au propriétaire 10001, en
-`0600`, sans les fichiers `-wal` et `-shm` d'avant.
-
-## Configuration
-
-Chaque variable secrète peut aussi être lue d'un fichier : `NOM_FILE=/chemin`.
-Une valeur invalide arrête ProxLab au démarrage avec la liste des erreurs.
-
-| Variable | Rôle | Défaut |
-|---|---|---|
-| `PROXLAB_HUB_TOKEN` | jeton du Hub : état, événements, alertes, démarrer / arrêter proprement / redémarrer — jamais les comptes, la liaison ni les alertes | — |
-| `PROXLAB_INTERVAL` | passe de surveillance (s, 15 à 3600) | `60` |
-| `PROXLAB_EVENTS_DAYS` | rétention des événements (jours, 1 à 365 ; 20 000 au plus) | `30` |
-| `SOCLE_JETON_ADMIN_HUB` | jeton d'administration des comptes par le Hub ; dans le Hub, généré (`HUB_ADMIN_TOKEN`) | — |
-| `SOCLE_THEME` | gamme de l'interface : `soma`, `console` ou `exploitation` ; dans le Hub, choisie dans la page Thème | `soma` |
-| `SOCLE_DISPOSITION` | position du menu : `gauche`, `haut`, `bas` ou `droite` ; dans le Hub, choisie dans la page Thème. Chacun peut en choisir une autre dans l'interface (bouton à côté de clair ou sombre, ou appui long sur le menu puis glisser vers un bord) | `gauche` |
-| `DATA_DIR` | dossier de `proxlab.db` | `/app/data` |
-| `PORT` / `HOTE` | écoute | `8140` / `0.0.0.0` |
-| `SOCLE_CLE` | clé maîtresse, 32 octets en base64 (en conteneur : `SOCLE_CLE_FILE`) | — |
-| `SOCLE_CLE_ANCIENNE` | pendant une rotation seulement : la clé remplacée | — |
-| `SOCLE_HTTP` | `1` : mode dégradé sans HTTPS | `0` |
-| `SOCLE_PROXYS` | relais inverses de confiance (CIDR) | — |
-| `SOCLE_ORIGINES` | origines acceptées en plus de celle de la page | — |
-| `SOCLE_JETON_INSTALLATION` | jeton du premier compte ; vide : tiré au démarrage | — |
-| `SOCLE_URL_PUBLIQUE` | adresse publique (`https://…`) des liens de courriel | — |
-| `SOCLE_SMTP_HOTE` / `_PORT` / `_SECURITE` | relais des alertes de sécurité : `tls` (465) ou `starttls` (587) | — / 465 / `tls` |
-| `SOCLE_SMTP_UTILISATEUR` / `_MOTDEPASSE` / `_DE` | identifiants du relais et adresse d'expédition | — |
-
-La liaison à Proxmox et le récepteur d'alertes se règlent dans l'interface
-(Réglages), pas dans l'environnement : leurs secrets sont scellés en base.
-
-## Derrière un relais inverse
-
-Déclarer l'adresse du relais dans `SOCLE_PROXYS` ; sans cela, ProxLab ignore
-`X-Forwarded-For` et `X-Forwarded-Proto`. Le relais doit transmettre
-`X-Forwarded-For`, `X-Forwarded-Proto` et `Host`, et laisser passer la mise à
-niveau WebSocket sur `/ws/console`.
-
-Derrière Cloudflare, qui remplace par sa propre page les réponses 502 et 504
-d'un serveur d'origine, ProxLab répond 503 à la place (statut d'origine dans
-`X-Statut-Amont`) : le message d'un Proxmox ou d'un Sunshine injoignable
-reste lisible.
-
-## Sécurité
-
-Les données conservées et leur finalité sont décrites dans
-`web/confidentialite.txt`, servi à `/confidentialite.txt`.
-
-En cas d'incident : fermer toutes les sessions et forcer une réinitialisation
-depuis la page Comptes, régénérer le jeton du Hub au redéploiement, retirer la
-liaison (`node src/cli.js liaison retirer`) et révoquer le jeton d'API dans
-Proxmox, tourner la clé maîtresse, restaurer depuis une sauvegarde.
-`node outils/exercice-incident.mjs` joue ce déroulé de bout en bout.
-L'exploitant notifie une violation de données dans les 72 heures si le droit
-applicable l'exige.
-
-Une faille se signale en privé, par un avis de sécurité GitHub sur le dépôt
-(`Security → Advisories → Report a vulnerability`), jamais dans une issue
-publique.
+[AGPL-3.0-or-later](LICENSE) — made by [CodeX64](https://codexx64.github.io).
